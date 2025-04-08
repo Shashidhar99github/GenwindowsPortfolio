@@ -1,0 +1,1571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rukkamolla Shashidhar Reddy - Frontend Developer Portfolio OS</title>
+    <!-- Favicon (Professional Laptop Icon) -->
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%92%BB%3C/text%3E%3C/svg%3E">
+
+    <!-- Font Awesome for Icons (Requires internet connection) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <style>
+        /* --- Base Styles & Resets --- */
+        :root {
+            /* Light Theme */
+            --windows-blue: #0078d4;
+            --text-primary: #202020;
+            --text-secondary: #606060;
+            --bg-desktop: #0078d4; /* Fallback color */
+            --bg-taskbar: rgba(243, 243, 243, 0.85);
+            --bg-window: rgba(249, 249, 249, 0.9);
+            --bg-panel: rgba(243, 243, 243, 0.92);
+            --bg-control-hover: rgba(0, 0, 0, 0.06);
+            --bg-control-active: rgba(0, 0, 0, 0.08);
+            --border-color-light: rgba(0, 0, 0, 0.1);
+            --border-color-medium: rgba(0, 0, 0, 0.15);
+            --shadow-color-light: rgba(0, 0, 0, 0.1);
+            --shadow-color-medium: rgba(0, 0, 0, 0.15);
+            --font-family: 'Segoe UI Variable', 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            --border-radius: 8px;
+            --border-radius-lg: 10px;
+            --taskbar-height: 48px;
+            color-scheme: light; /* Signal light theme preference */
+        }
+
+        /* --- Dark Theme Variables (Apply using a class on body or :root attribute if implementing toggler) ---
+        :root.dark-theme {
+            --windows-blue: #4cc2ff;
+            --text-primary: #ffffff;
+            --text-secondary: #cccccc;
+            --bg-desktop: #1e1e1e;
+            --bg-taskbar: rgba(32, 32, 32, 0.85);
+            --bg-window: rgba(43, 43, 43, 0.9);
+            --bg-panel: rgba(38, 38, 38, 0.92);
+            --bg-control-hover: rgba(255, 255, 255, 0.08);
+            --bg-control-active: rgba(255, 255, 255, 0.1);
+            --border-color-light: rgba(255, 255, 255, 0.1);
+            --border-color-medium: rgba(255, 255, 255, 0.15);
+            --shadow-color-light: rgba(0, 0, 0, 0.3);
+            --shadow-color-medium: rgba(0, 0, 0, 0.4);
+            color-scheme: dark;
+        }
+        .dark-theme body, .dark-theme .window, .dark-theme .panel, .dark-theme .context-menu { color: var(--text-primary); }
+        .dark-theme .desktop-icon { color: white; text-shadow: 1px 1px 2px rgba(0,0,0,0.9); }
+        .dark-theme .desktop-icon:hover:not(.selected) { background-color: rgba(255, 255, 255, 0.1); }
+        .dark-theme .desktop-icon.selected { background-color: rgba(76, 194, 255, 0.2); border-color: rgba(76, 194, 255, 0.6); }
+        .dark-theme .title-bar { background-color: rgba(60, 60, 60, 0.6); }
+        .dark-theme .taskbar-icon, .dark-theme #system-tray-icons span, .dark-theme #clock { color: var(--text-primary); }
+        .dark-theme #start-button { color: var(--windows-blue); }
+        .dark-theme .close-button:hover { background-color: #e81123; color: white; }
+        .dark-theme #contact-content a { color: var(--text-primary); }
+        .dark-theme #contact-content a:hover { color: var(--windows-blue); }
+        .dark-theme #start-search-bar, .dark-theme #search-input, .dark-theme #explorer-window input[type=text] { background-color: rgba(0,0,0,0.2); border-color: var(--border-color-medium); color: var(--text-primary); }
+        .dark-theme #start-search-bar:focus, .dark-theme #search-input:focus { border-color: var(--windows-blue); box-shadow: 0 0 0 2px rgba(76, 194, 255, 0.3); }
+        .dark-theme .widget-card { background-color: var(--bg-window); box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
+        .dark-theme .quick-setting-tile { background-color: var(--bg-window); }
+        .dark-theme .quick-setting-tile:hover { background-color: rgba(255,255,255,0.05); }
+        .dark-theme .quick-setting-tile.active { background-color: var(--windows-blue); color: var(--text-primary); }
+        .dark-theme .context-menu { background-color: var(--bg-panel); border: 1px solid var(--border-color-medium); }
+        .dark-theme .context-menu-item:hover { background-color: var(--bg-control-hover); }
+        .dark-theme .context-menu-separator { background-color: var(--border-color-medium); }
+        .dark-theme .window-content::-webkit-scrollbar-thumb { background: #555; }
+        .dark-theme #start-menu-content::-webkit-scrollbar-thumb { background: #555; }
+        .dark-theme #start-menu-footer { background-color: rgba(255,255,255,0.02); border-top-color: var(--border-color-light); }
+        .dark-theme .project-card { background-color: rgba(255,255,255,0.03); border-color: var(--border-color-light); }
+        .dark-theme .project-card:hover { border-color: var(--border-color-medium); }
+        .dark-theme .skills-list li { background-color: var(--bg-window); }
+        .dark-theme .skills-list li:hover { background-color: rgba(255,255,255,0.05); }
+        .dark-theme #contact-content .note { color: #aaa; }
+        */
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        html, body {
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+            font-family: var(--font-family);
+            font-size: 14px;
+            color: var(--text-primary);
+            background-color: var(--bg-desktop);
+            user-select: none; /* Prevent text selection globally */
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+        }
+        body:focus { outline: none; } /* Remove focus outline from body */
+
+        /* --- Desktop --- */
+        #desktop {
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
+            position: relative;
+            padding: 20px;
+            transition: background-image 0.5s ease-in-out; /* Smooth background transition */
+        }
+
+        .desktop-icons {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 10px; /* Slightly reduced gap */
+            position: relative; /* Needed for z-index if overlapping windows */
+            z-index: 5;
+        }
+
+        .desktop-icon {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            width: 90px;
+            padding: 8px 4px;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: background-color 0.15s ease, border-color 0.15s ease;
+            color: white;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
+            font-size: 12px;
+            border: 1px solid transparent;
+        }
+        .desktop-icon.selected {
+             background-color: rgba(0, 120, 212, 0.2); /* Use theme blue for selection */
+             border: 1px solid rgba(0, 120, 212, 0.6);
+             padding: 7px 3px;
+        }
+        .desktop-icon:hover:not(.selected) {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        .desktop-icon i {
+            font-size: 32px;
+            margin-bottom: 6px;
+            line-height: 1; /* Prevent extra space */
+        }
+        .desktop-icon span {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            word-break: break-word;
+            line-height: 1.3;
+            width: 100%; /* Ensure span takes full width for text wrapping */
+        }
+         .desktop-icon:focus { /* Basic focus outline */
+             outline: 1px dotted var(--windows-blue);
+             outline-offset: 2px;
+         }
+
+        /* --- Taskbar --- */
+        #taskbar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: var(--taskbar-height);
+            background-color: var(--bg-taskbar);
+            backdrop-filter: blur(25px) saturate(180%);
+            -webkit-backdrop-filter: blur(25px) saturate(180%);
+            border-top: 1px solid var(--border-color-light);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            padding: 0 10px;
+        }
+
+        #taskbar-icons {
+            display: flex;
+            gap: 5px;
+        }
+
+        .taskbar-icon {
+            font-size: 20px;
+            width: 42px; /* Slightly wider */
+            height: 42px; /* Slightly taller */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 4px;
+            transition: background-color 0.15s ease;
+            cursor: pointer;
+            color: var(--text-primary);
+            position: relative;
+            flex-shrink: 0;
+        }
+        .taskbar-icon:hover { background-color: var(--bg-control-hover); }
+        .taskbar-icon:active { background-color: var(--bg-control-active); } /* Click feedback */
+
+        .taskbar-icon.open::after { /* Indicator line */
+            content: '';
+            position: absolute;
+            bottom: 3px;
+            left: 30%;
+            right: 30%;
+            height: 2px;
+            background-color: var(--windows-blue);
+            border-radius: 1px;
+            opacity: 0.7;
+            transition: all 0.2s ease;
+         }
+         .taskbar-icon.active.open::after { /* Active indicator */
+             left: 15%;
+             right: 15%;
+             height: 3px; /* Thicker */
+             opacity: 1;
+         }
+        /* Specific icon styling */
+        #start-button { color: var(--windows-blue); font-size: 20px; }
+        #search-button i { font-size: 18px; }
+        #widgets-button i { font-size: 18px; }
+
+        #system-tray {
+            position: absolute;
+            right: 0px;
+            display: flex;
+            align-items: center;
+            height: 100%;
+            padding: 0 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.15s ease;
+        }
+        #system-tray:hover { background-color: var(--bg-control-hover); }
+        #system-tray-icons {
+             display: flex;
+             align-items: center;
+             gap: 12px; /* Increased gap */
+             color: var(--text-primary);
+             font-size: 15px;
+        }
+        #system-tray-icons span { padding: 3px; display: flex; }
+        #clock {
+             font-size: 12px;
+             min-width: 55px; /* Wider clock */
+             text-align: right;
+             padding-left: 12px;
+             color: var(--text-primary);
+        }
+
+        /* --- Panels (Base Styles) --- */
+        .panel {
+            position: fixed;
+            background-color: var(--bg-panel);
+            backdrop-filter: blur(30px) saturate(160%);
+            -webkit-backdrop-filter: blur(30px) saturate(160%);
+            border-radius: var(--border-radius-lg);
+            box-shadow: 0 10px 40px var(--shadow-color-medium);
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.25s ease-out, visibility 0.25s ease-out, transform 0.25s cubic-bezier(0.1, 0.9, 0.2, 1.1); /* Added overshoot */
+            overflow: hidden;
+            border: 1px solid var(--border-color-light);
+        }
+        .panel.active {
+            opacity: 1;
+            visibility: visible;
+            transform: none;
+        }
+         /* Specific Panel Positioning & Transitions */
+        #start-menu, #search-panel {
+            bottom: calc(var(--taskbar-height) + 10px);
+            left: 50%;
+            transform: translateX(-50%) translateY(25px) scale(0.98); /* Start further down and scaled */
+            transform-origin: bottom center;
+        }
+        #widgets-panel {
+            left: 0; top: 0; height: 100vh;
+            border-top-left-radius: 0; border-bottom-left-radius: 0;
+            transform: translateX(-100%);
+            transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1); /* Smoother slide */
+            z-index: 998;
+        }
+         #widgets-panel.active { transform: translateX(0); }
+         #action-center {
+             bottom: calc(var(--taskbar-height) + 10px); right: 10px;
+             transform: translateY(25px) scale(0.98);
+             transform-origin: bottom right;
+         }
+         #context-menu {
+             position: absolute; /* Not fixed */
+             transform: scale(0.95) translateY(5px);
+             transform-origin: top left;
+             transition: opacity 0.15s ease-out, visibility 0.15s ease-out, transform 0.15s cubic-bezier(0.2, 1, 0.3, 1); /* Faster context menu */
+             z-index: 1100;
+         }
+         #context-menu.active { transform: scale(1) translateY(0); }
+
+
+        /* --- Start Menu --- */
+        #start-menu {
+            width: 580px; /* Wider */
+            max-height: 70vh;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+        }
+         #start-menu-search-container { padding: 15px 20px; flex-shrink: 0; }
+         #start-menu-content { flex-grow: 1; overflow-y: auto; padding: 0 20px 15px 20px; }
+         #start-menu-footer {
+             padding: 12px 20px;
+             border-top: 1px solid var(--border-color-light);
+             flex-shrink: 0; display: flex; justify-content: space-between; align-items: center;
+             background-color: rgba(0,0,0,0.02); /* Subtle footer background */
+         }
+         /* Scrollbar Styling (Subtle) */
+         #start-menu-content::-webkit-scrollbar { width: 6px; }
+         #start-menu-content::-webkit-scrollbar-thumb { background: var(--border-color-medium); border-radius: 3px; }
+         #start-menu-content::-webkit-scrollbar-track { background: transparent; }
+
+        .start-menu-section { margin-bottom: 25px; }
+        .start-menu-section:last-child { margin-bottom: 0; }
+        .start-menu-section h3 { font-size: 13px; font-weight: 600; margin-bottom: 12px; color: var(--text-primary); }
+        .start-menu-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(90px, 1fr)); gap: 10px; }
+        .start-menu-item {
+            display: flex; flex-direction: column; align-items: center; padding: 12px 5px; border-radius: var(--border-radius);
+            cursor: pointer; transition: background-color 0.15s ease; text-align: center; font-size: 12px; color: var(--text-primary);
+        }
+        .start-menu-item:hover { background-color: var(--bg-control-hover); }
+        .start-menu-item i { font-size: 28px; margin-bottom: 8px; }
+        #start-search-bar {
+            width: 100%; padding: 9px 15px; border: 1px solid var(--border-color-medium); border-radius: var(--border-radius);
+            font-size: 14px; background-color: rgba(128,128,128, 0.1); /* Greyish input */
+            color: var(--text-primary); transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+        #start-search-bar:focus { outline: none; border-color: var(--windows-blue); box-shadow: 0 0 0 2px rgba(0, 120, 212, 0.3); background-color: var(--bg-window); }
+        #start-menu-footer img { border-radius: 50%; vertical-align: middle; margin-right: 10px;}
+        #start-menu-footer .power-button { cursor: pointer; padding: 8px; font-size: 18px; border-radius: 4px; line-height: 1; }
+        #start-menu-footer .power-button:hover { background-color: var(--bg-control-hover); }
+
+        /* --- Search Panel --- */
+        #search-panel { width: 580px; height: 550px; padding: 20px; display: flex; flex-direction: column; }
+        #search-input {
+            width: 100%; padding: 10px 16px; margin-bottom: 20px; border: 1px solid var(--border-color-medium); border-radius: var(--border-radius);
+            font-size: 15px; background-color: rgba(128,128,128, 0.1); flex-shrink: 0; color: var(--text-primary);
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+        #search-input:focus { outline: none; border-color: var(--windows-blue); box-shadow: 0 0 0 2px rgba(0, 120, 212, 0.3); background-color: var(--bg-window); }
+        #search-results { flex-grow: 1; overflow-y: auto; color: var(--text-secondary); padding-top: 10px; }
+        #search-results p { font-style: italic; }
+
+        /* --- Widgets Panel --- */
+        #widgets-panel { width: 380px; padding: 25px; padding-top: 60px; overflow-y: auto; }
+        #widgets-panel h3 { margin-bottom: 25px; font-weight: 600; }
+        .widget-card {
+            background-color: var(--bg-window); padding: 18px; border-radius: var(--border-radius); margin-bottom: 18px;
+            box-shadow: 0 3px 8px var(--shadow-color-light); color: var(--text-primary);
+            border: 1px solid transparent; /* For potential hover effect */
+            transition: border-color 0.2s ease;
+        }
+        .widget-card:hover { border-color: var(--border-color-medium); }
+        .widget-card h4 { margin-bottom: 8px; display: flex; align-items: center; gap: 8px; font-weight: 600; }
+        .widget-card h4 i { color: var(--windows-blue); /* Default icon color */ }
+        .widget-card p { font-size: 0.9em; line-height: 1.5; color: var(--text-secondary); }
+        .widget-card p + p { margin-top: 5px; } /* Spacing between paragraphs */
+
+        /* --- Action Center --- */
+        #action-center { width: 360px; max-height: 450px; padding: 20px; overflow-y: auto; color: var(--text-primary); }
+        #action-center h4 { margin-bottom: 18px; font-weight: 600; }
+        .quick-settings-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+        .quick-setting-tile {
+             background-color: var(--bg-window); border-radius: var(--border-radius); padding: 14px; display: flex; flex-direction: column;
+             align-items: center; justify-content: center; text-align: center; cursor: pointer; transition: background-color 0.15s ease;
+             font-size: 12px; min-height: 75px; border: 1px solid var(--border-color-light);
+        }
+        .quick-setting-tile:hover { background-color: var(--bg-control-hover); border-color: var(--border-color-medium); }
+        .quick-setting-tile i { font-size: 22px; margin-bottom: 8px; }
+        .quick-setting-tile.active { background-color: var(--windows-blue); color: white; border-color: var(--windows-blue); }
+        .quick-setting-tile.active:hover { background-color: #005a9e; }
+        .slider-control { display: flex; align-items: center; gap: 12px; margin-top: 20px; }
+        .slider-control input[type=range] { width: 100%; cursor: pointer; accent-color: var(--windows-blue); height: 5px; }
+         .slider-control i { font-size: 16px; color: var(--text-secondary); }
+
+        /* --- Application Windows --- */
+        .window {
+            position: absolute;
+            background-color: var(--bg-window);
+            backdrop-filter: blur(35px) saturate(150%);
+            -webkit-backdrop-filter: blur(35px) saturate(150%);
+            border: 1px solid var(--border-color-light);
+            border-radius: var(--border-radius);
+            box-shadow: 0 8px 35px var(--shadow-color-medium);
+            display: none; /* Use JS to show */
+            flex-direction: column;
+            overflow: hidden; /* Important: clips content */
+            resize: both;
+            min-width: 320px;
+            min-height: 220px;
+            z-index: 10;
+            transition: opacity 0.2s ease-out, transform 0.2s ease-out; /* Transition for opening */
+        }
+        /* State Classes */
+        .window.opening { opacity: 0; transform: scale(0.95); } /* Initial state for opening animation */
+        .window.active { border-color: var(--border-color-medium); box-shadow: 0 12px 50px var(--shadow-color-medium); z-index: 50; }
+        .window.maximized { border-radius: 0; border: none; resize: none; top: 0 !important; left: 0 !important; width: 100vw !important; height: calc(100vh - var(--taskbar-height)) !important; }
+        .window.dragging { opacity: 0.85; transition: none; cursor: grabbing; box-shadow: 0 15px 60px rgba(0,0,0,0.3); } /* Style while dragging */
+
+        .title-bar {
+            height: 38px; /* Slightly taller */
+            display: flex; justify-content: space-between; align-items: center; padding-left: 15px;
+            cursor: grab; flex-shrink: 0; position: relative;
+        }
+        .title-bar:active { cursor: grabbing; }
+        .window.maximized .title-bar { cursor: default; }
+        .window.maximized .title-bar:active { cursor: default; }
+
+        .title-bar-text {
+            font-weight: 600; font-size: 13px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+            padding-right: 10px; color: var(--text-primary);
+        }
+         .title-bar-text i { margin-right: 8px; font-size: 0.95em; color: var(--windows-blue); }
+
+        .title-bar-controls { display: flex; height: 100%; }
+        .title-bar-button {
+            width: 46px; height: 100%; border: none; background: none; font-size: 12px; line-height: 38px; text-align: center;
+            cursor: pointer; border-radius: 0; color: var(--text-primary); transition: background-color 0.15s ease; padding-top: 2px;
+        }
+        .title-bar-button:hover { background-color: var(--bg-control-hover); }
+        .close-button:hover { background-color: #e81123; color: white; }
+        .window:not(.maximized) .title-bar-controls { border-top-right-radius: var(--border-radius); overflow: hidden; }
+
+        .window-content {
+            padding: 20px 25px; /* More padding */
+            flex-grow: 1; overflow-y: auto; line-height: 1.65; color: var(--text-primary);
+            user-select: text; /* Allow text selection inside windows */
+            -webkit-user-select: text; -moz-user-select: text; -ms-user-select: text;
+        }
+         /* Window Scrollbar Styling */
+         .window-content::-webkit-scrollbar { width: 8px; }
+         .window-content::-webkit-scrollbar-thumb { background: var(--border-color-medium); border-radius: 4px; }
+         .window-content::-webkit-scrollbar-track { background: transparent; }
+
+        /* --- Specific Window Content Styling --- */
+        /* About */
+        #about-content img { float: left; width: 110px; height: 110px; border-radius: 50%; margin: 0 25px 15px 0; border: 4px solid var(--bg-panel); }
+        #about-content h2 { margin-bottom: 18px; font-size: 1.8em; font-weight: 600; }
+        #about-content p { margin-bottom: 14px; }
+        #about-content strong { font-weight: 600; color: var(--windows-blue); }
+
+        /* Projects */
+        #projects-content h2 { margin-bottom: 20px; font-size: 1.6em; }
+        .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 25px; }
+        .project-card {
+            background-color: rgba(0,0,0,0.02); border: 1px solid var(--border-color-light); padding: 20px; border-radius: 6px;
+            box-shadow: 0 2px 5px var(--shadow-color-light); transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+        }
+        .project-card:hover { transform: translateY(-4px); box-shadow: 0 5px 12px var(--shadow-color-light); border-color: var(--border-color-medium); }
+        .project-card h4 { margin-bottom: 10px; font-size: 1.1em; font-weight: 600; }
+        .project-card p { font-size: 0.9em; margin-bottom: 15px; color: var(--text-secondary); }
+        .project-card .links a { color: var(--windows-blue); text-decoration: none; font-weight: 600; font-size: 0.9em; transition: color 0.2s ease; }
+        .project-card .links a:hover { text-decoration: underline; color: #005a9e; }
+        .project-card .links a + a { margin-left: 15px; }
+        .project-card .links i { font-size: 0.8em; margin-left: 3px; }
+
+        /* Skills */
+        #skills-content h2 { margin-bottom: 20px; font-size: 1.6em; }
+        #skills-content h4 { font-size: 1.1em; margin-bottom: 12px; margin-top: 20px; font-weight: 600; border-bottom: 1px solid var(--border-color-light); padding-bottom: 5px; }
+        #skills-content h4:first-of-type { margin-top: 0; }
+        .skills-list { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 12px; }
+        .skills-list li {
+            background-color: var(--bg-panel); border: 1px solid var(--border-color-light); padding: 7px 16px;
+            border-radius: var(--border-radius); font-size: 0.9em; cursor: default; transition: background-color 0.15s ease;
+        }
+        .skills-list li:hover { background-color: var(--bg-control-hover); }
+
+        /* Contact */
+        #contact-content h2 { margin-bottom: 20px; font-size: 1.6em; }
+        #contact-content p { margin-bottom: 15px; display: flex; align-items: center; font-size: 1.05em; }
+        #contact-content i { margin-right: 12px; color: var(--windows-blue); width: 22px; text-align: center; flex-shrink: 0; font-size: 1.1em; }
+        #contact-content a { color: var(--text-primary); text-decoration: none; word-break: break-all; transition: color 0.2s ease; }
+        #contact-content a:hover { text-decoration: underline; color: var(--windows-blue); }
+        #contact-content .note { font-style: italic; color: var(--text-secondary); margin-left: auto; padding-left: 15px; font-size: 0.9em; white-space: nowrap; }
+
+        /* File Explorer Simulation */
+        #explorer-content { display: flex; flex-direction: column; padding: 0; }
+        #explorer-toolbar { padding: 8px 15px; background: var(--bg-panel); border-bottom: 1px solid var(--border-color-light); display:flex; align-items: center; gap: 15px; flex-shrink: 0; }
+        #explorer-toolbar i { color: var(--text-secondary); cursor: pointer; font-size: 1.1em; }
+        #explorer-toolbar i.disabled { color: var(--border-color-medium); cursor: not-allowed; }
+        #explorer-toolbar input[type=text] { padding: 5px 10px; border: 1px solid var(--border-color-medium); border-radius: 4px; font-size: 13px; background-color: var(--bg-window); color: var(--text-primary); }
+        #explorer-path { flex-grow: 1; }
+        #explorer-search { width: 180px; }
+        #explorer-main { display: flex; flex-grow: 1; }
+        #explorer-nav { width: 220px; background: var(--bg-panel); padding: 15px; border-right: 1px solid var(--border-color-light); font-size: 13px; flex-shrink: 0; overflow-y: auto; }
+        #explorer-nav p, #explorer-nav li { display: flex; align-items: center; gap: 8px; padding: 4px 0; cursor: pointer; border-radius: 4px; }
+        #explorer-nav p i, #explorer-nav li i { width: 18px; text-align: center; }
+        #explorer-nav p:hover, #explorer-nav li:hover { background-color: var(--bg-control-hover); }
+        #explorer-nav ul { list-style: none; padding-left: 25px; margin: 5px 0; }
+        #explorer-nav .active-folder { background-color: var(--bg-control-active); font-weight: 600; }
+        #explorer-files { flex-grow: 1; padding: 15px; overflow-y: auto; }
+        #explorer-files .file-item { display: flex; align-items: center; gap: 10px; padding: 6px 8px; border-radius: 4px; cursor: pointer; }
+        #explorer-files .file-item:hover { background-color: var(--bg-control-hover); }
+        #explorer-files .file-item i { color: #ffda7e; } /* Folder yellow */
+        #explorer-files .file-item i.fa-file-code { color: #66ccff; } /* Code file blue */
+
+        /* Settings Simulation */
+        #settings-content h2 { margin-bottom: 20px; font-size: 1.6em; }
+        .settings-category-list { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 5px; }
+        .settings-category-list li { padding: 12px 15px; border-radius: var(--border-radius); cursor: pointer; transition: background-color 0.15s ease; display: flex; align-items: center; gap: 15px; font-size: 1.05em; }
+        .settings-category-list li:hover { background-color: var(--bg-control-hover); }
+        .settings-category-list li i { font-size: 1.2em; width: 25px; text-align: center; color: var(--windows-blue); }
+
+        /* --- Context Menu --- */
+        #context-menu {
+            background-color: var(--bg-panel); border-radius: var(--border-radius);
+            box-shadow: 0 5px 20px var(--shadow-color-medium); padding: 6px 0; /* Reduced padding */
+            min-width: 200px; border: 1px solid var(--border-color-light); color: var(--text-primary);
+        }
+        .context-menu-item {
+            padding: 8px 20px; font-size: 13px; cursor: pointer; display: flex; align-items: center; gap: 12px; white-space: nowrap;
+            transition: background-color 0.1s ease; /* Faster hover */
+        }
+        .context-menu-item:hover { background-color: var(--bg-control-hover); }
+        .context-menu-item i { width: 18px; text-align: center; color: var(--text-secondary); }
+        .context-menu-separator { height: 1px; background-color: var(--border-color-medium); margin: 6px 10px; }
+
+
+        /* --- Utility Classes --- */
+        .hidden { display: none; }
+
+    </style>
+</head>
+<body>
+
+    <!-- Desktop Environment -->
+    <div id="desktop">
+        <!-- Desktop Icons -->
+        <div class="desktop-icons">
+            <div class="desktop-icon" data-window-id="about-window" tabindex="0" title="About Rukkamolla Shashidhar Reddy">
+                <i class="fas fa-user-circle" style="color: #ff8c00;"></i>
+                <span>About Me</span>
+            </div>
+            <div class="desktop-icon" data-window-id="projects-window" tabindex="0" title="My Projects">
+                <i class="fas fa-folder-open" style="color: #ffcc00;"></i>
+                <span>Projects</span>
+            </div>
+             <div class="desktop-icon" data-window-id="skills-window" tabindex="0" title="Skills & Toolkit">
+                <i class="fas fa-drafting-compass" style="color: #cccccc;"></i> <!-- Changed icon -->
+                <span>Skills</span>
+            </div>
+            <div class="desktop-icon" data-window-id="contact-window" tabindex="0" title="Contact Me">
+                <i class="fas fa-envelope" style="color: #66ccff;"></i>
+                <span>Contact</span>
+            </div>
+            <div class="desktop-icon" data-window-id="explorer-window" tabindex="0" title="File Explorer (Simulated)">
+                 <i class="fas fa-folder" style="color: #ffda7e;"></i>
+                <span>File Explorer</span>
+            </div>
+            <div class="desktop-icon" data-window-id="settings-window" tabindex="0" title="Settings (Simulated)">
+                 <i class="fas fa-cog" style="color: #bbbbbb;"></i>
+                <span>Settings</span>
+            </div>
+            <!-- Link Icons -->
+            <div class="desktop-icon" onclick="window.open('https://github.com/Shashidhar99github', '_blank')" tabindex="0" title="Open GitHub Profile (Opens in new tab)">
+                <i class="fab fa-github" style="color: #8e44ad;"></i>
+                <span>GitHub</span>
+            </div>
+            <div class="desktop-icon" onclick="window.open('https://www.linkedin.com/in/rukkamolla-shashidhar-reddy/', '_blank')" tabindex="0" title="Open LinkedIn Profile (Opens in new tab)">
+                <i class="fab fa-linkedin" style="color: #3498db;"></i>
+                <span>LinkedIn</span>
+            </div>
+        </div>
+
+        <!-- Application Windows (Initially Hidden) -->
+
+        <!-- About Me Window -->
+        <div id="about-window" class="window">
+            <div class="title-bar">
+                <span class="title-bar-text"><i class="fas fa-user-circle"></i> About Rukkamolla Shashidhar Reddy</span>
+                <div class="title-bar-controls">
+                    <button class="title-bar-button minimize-button" title="Minimize"><i class="fa-solid fa-minus"></i></button>
+                    <button class="title-bar-button maximize-button" title="Maximize"><i class="fa-regular fa-square"></i></button>
+                    <button class="title-bar-button close-button" title="Close"><i class="fas fa-times"></i></button>
+                </div>
+            </div>
+            <div class="window-content" id="about-content">
+                 <img src="https://via.placeholder.com/110/0078d4/ffffff?text=SR" alt="Rukkamolla Shashidhar Reddy"> <!-- Placeholder - Replace with your photo URL or Base64 -->
+                 <h2>Hi, I'm Rukkamolla Shashidhar Reddy! 👋</h2>
+                 <p>A dedicated and creative **Frontend Web Developer** passionate about building intuitive, dynamic, and visually appealing user interfaces. I thrive on crafting web experiences that are not only technically sound but also delightful for the end-user – embodying the spirit of a **"Vibe Code Developer"**.</p>
+                 <p>With expertise in modern frontend ecosystems, particularly **React, Next.js, JavaScript (ES6+), TypeScript, HTML5, and CSS3/SCSS**, I excel at translating complex requirements and designs into clean, efficient, and maintainable code. My experience spans building responsive layouts, consuming APIs, managing state effectively, and optimizing web performance.</p>
+                 <p>I am constantly exploring new technologies and methodologies to stay ahead in the ever-evolving web landscape. My goal is to leverage my skills to contribute to innovative projects and create impactful digital solutions.</p>
+                 <p>This portfolio, presented as a Windows 11 simulation, is a testament to my frontend capabilities and creativity. Please explore the various 'applications' (windows) to discover my projects, skills, and contact information.</p>
+            </div>
+        </div>
+
+        <!-- Projects Window -->
+        <div id="projects-window" class="window" style="top: 150px; left: 250px; width: 800px; height: 550px;">
+            <div class="title-bar">
+                 <span class="title-bar-text"><i class="fas fa-folder-open"></i> My Projects</span>
+                <div class="title-bar-controls">
+                     <button class="title-bar-button minimize-button" title="Minimize"><i class="fa-solid fa-minus"></i></button>
+                    <button class="title-bar-button maximize-button" title="Maximize"><i class="fa-regular fa-square"></i></button>
+                    <button class="title-bar-button close-button" title="Close"><i class="fas fa-times"></i></button>
+                </div>
+            </div>
+            <div class="window-content" id="projects-content">
+                <h2>Project Showcase</h2>
+                <p style="margin-bottom: 25px;">Here is a selection of projects I've worked on, demonstrating my skills in various frontend technologies.</p>
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <h4>E-commerce Platform Frontend</h4>
+                        <p>Developed a responsive and interactive frontend for an e-commerce site using React, Redux Toolkit for state management, and Material UI for components. Implemented features like product filtering, sorting, cart management, and simulated checkout process.</p>
+                        <div class="links">
+                            <a href="#" target="_blank" title="View Live Demo">Live Demo <i class="fas fa-external-link-alt fa-xs"></i></a>
+                            <a href="https://github.com/Shashidhar99github" target="_blank" title="View on GitHub">GitHub <i class="fab fa-github fa-xs"></i></a>
+                        </div>
+                    </div>
+                     <div class="project-card">
+                        <h4>Task Management Application</h4>
+                        <p>Created a single-page application (SPA) for managing tasks using Next.js for server-side rendering and SEO benefits, TypeScript for type safety, and Tailwind CSS for rapid UI development. Features include drag-and-drop task reordering and local storage persistence.</p>
+                        <div class="links">
+                            <a href="#" target="_blank" title="View Live Demo">Live Demo <i class="fas fa-external-link-alt fa-xs"></i></a>
+                            <a href="https://github.com/Shashidhar99github" target="_blank" title="View on GitHub">GitHub <i class="fab fa-github fa-xs"></i></a>
+                        </div>
+                    </div>
+                     <div class="project-card">
+                        <h4>Interactive Data Visualization Dashboard</h4>
+                        <p>Built a dashboard displaying complex data using Chart.js within a Vue.js application. Focused on fetching data from a REST API, creating reusable chart components, and providing user controls for data filtering.</p>
+                         <div class="links">
+                            <a href="https://github.com/Shashidhar99github" target="_blank" title="View on GitHub">GitHub <i class="fab fa-github fa-xs"></i></a>
+                         </div>
+                    </div>
+                     <div class="project-card">
+                        <h4>This Windows 11 Portfolio Simulation</h4>
+                        <p>This very portfolio demonstrates proficiency in vanilla JavaScript, advanced CSS techniques (including Flexbox, Grid, CSS Variables, backdrop-filter), and DOM manipulation to create a complex, interactive UI simulation within a single HTML file.</p>
+                         <div class="links">
+                            <a href="https://github.com/Shashidhar99github" target="_blank" title="View on GitHub">GitHub <i class="fab fa-github fa-xs"></i></a>
+                         </div>
+                    </div>
+                    <!-- Add more project cards -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Skills Window -->
+        <div id="skills-window" class="window" style="top: 200px; left: 400px; width: 600px; height: 500px;">
+            <div class="title-bar">
+                 <span class="title-bar-text"><i class="fas fa-drafting-compass"></i> Skills & Toolkit</span>
+                <div class="title-bar-controls">
+                     <button class="title-bar-button minimize-button" title="Minimize"><i class="fa-solid fa-minus"></i></button>
+                    <button class="title-bar-button maximize-button" title="Maximize"><i class="fa-regular fa-square"></i></button>
+                    <button class="title-bar-button close-button" title="Close"><i class="fas fa-times"></i></button>
+                </div>
+            </div>
+            <div class="window-content" id="skills-content">
+                 <h2>My Technical Expertise</h2>
+                <p style="margin-bottom: 25px;">I possess a strong command over the essential tools and technologies required for modern frontend development.</p>
+
+                <h4>Core Languages & Technologies:</h4>
+                <ul class="skills-list">
+                    <li>HTML5 (Semantic)</li>
+                    <li>CSS3 (Flexbox, Grid, Animations)</li>
+                    <li>JavaScript (ES6+ & Async/Await)</li>
+                    <li>TypeScript</li>
+                    <li>SCSS/Sass (Variables, Mixins)</li>
+                    <li>Responsive Web Design</li>
+                    <li>Web Accessibility (WCAG Standards)</li>
+                    <li>REST API Integration</li>
+                </ul>
+
+                <h4>Frameworks & Libraries:</h4>
+                 <ul class="skills-list">
+                    <li>React</li>
+                    <li>Next.js</li>
+                    <li>Redux / Redux Toolkit</li>
+                    <li>Zustand</li>
+                    <li>Vue.js (Intermediate)</li>
+                    <li>Node.js (for Build Tools & Basic APIs)</li>
+                    <li>Express.js (Basic)</li>
+                    <li>Tailwind CSS</li>
+                    <li>Material UI (MUI)</li>
+                    <li>Bootstrap</li>
+                    <li>Styled Components / Emotion</li>
+                    <li>Chart.js</li>
+                    <li>jQuery (Legacy Support)</li>
+                </ul>
+
+                 <h4>Development Tools & Platforms:</h4>
+                 <ul class="skills-list">
+                    <li>Git / GitHub / GitLab</li>
+                    <li>npm / yarn / pnpm</li>
+                    <li>Webpack / Vite</li>
+                    <li>Babel</li>
+                    <li>ESLint / Prettier</li>
+                    <li>Jest / React Testing Library</li>
+                    <li>Cypress (Basic E2E Testing)</li>
+                    <li>Docker (Basic Containerization)</li>
+                    <li>Figma (Collaboration & Design Handoff)</li>
+                    <li>VS Code (Primary Editor)</li>
+                    <li>Chrome DevTools / Firefox Developer Tools</li>
+                    <li>Postman / Insomnia</li>
+                    <li>Netlify / Vercel</li>
+                    <li>AWS (S3, CloudFront - Basic Deployment)</li>
+                 </ul>
+            </div>
+        </div>
+
+        <!-- Contact Window -->
+        <div id="contact-window" class="window" style="top: 250px; left: 550px; width: 520px; height: 380px;">
+            <div class="title-bar">
+                 <span class="title-bar-text"><i class="fas fa-envelope"></i> Get In Touch</span>
+                <div class="title-bar-controls">
+                     <button class="title-bar-button minimize-button" title="Minimize"><i class="fa-solid fa-minus"></i></button>
+                    <button class="title-bar-button maximize-button" title="Maximize"><i class="fa-regular fa-square"></i></button>
+                    <button class="title-bar-button close-button" title="Close"><i class="fas fa-times"></i></button>
+                </div>
+            </div>
+            <div class="window-content" id="contact-content">
+                 <h2>Let's Connect!</h2>
+                 <p>I'm actively seeking new opportunities and collaborations. If you have a project in mind, want to discuss technology, or just say hello, please don't hesitate to reach out:</p>
+                 <br>
+                 <p><i class="fas fa-envelope fa-fw"></i> <a href="mailto:your.email@example.com">your.email@example.com</a> <span class="note">(Replace this!)</span></p>
+                 <p><i class="fab fa-linkedin fa-fw"></i> <a href="https://www.linkedin.com/in/rukkamolla-shashidhar-reddy/" target="_blank">linkedin.com/in/rukkamolla-shashidhar-reddy</a></p>
+                 <p><i class="fab fa-github fa-fw"></i> <a href="https://github.com/Shashidhar99github" target="_blank">github.com/Shashidhar99github</a></p>
+                 <p><i class="fas fa-file-pdf fa-fw"></i> <a href="/path/to/your/resume.pdf" target="_blank">View My Resume</a> <span class="note">(Link PDF here!)</span></p>
+                 <br>
+                 <p>I'm excited about the possibility of working together and bringing innovative ideas to life.</p>
+            </div>
+        </div>
+
+        <!-- File Explorer Window (Simulated) -->
+        <div id="explorer-window" class="window" style="top: 120px; left: 300px; width: 750px; height: 520px;">
+            <div class="title-bar">
+                 <span class="title-bar-text"><i class="fas fa-folder" style="color: #ffda7e;"></i> File Explorer (Simulated)</span>
+                <div class="title-bar-controls">
+                     <button class="title-bar-button minimize-button" title="Minimize"><i class="fa-solid fa-minus"></i></button>
+                    <button class="title-bar-button maximize-button" title="Maximize"><i class="fa-regular fa-square"></i></button>
+                    <button class="title-bar-button close-button" title="Close"><i class="fas fa-times"></i></button>
+                </div>
+            </div>
+            <div class="window-content" id="explorer-content">
+                 <div id="explorer-toolbar">
+                     <i class="fas fa-arrow-left disabled" title="Back"></i>
+                     <i class="fas fa-arrow-right disabled" title="Forward"></i>
+                     <i class="fas fa-arrow-up" title="Up"></i>
+                     <input id="explorer-path" type="text" value="Portfolio > Projects" title="Current path">
+                     <input id="explorer-search" type="text" placeholder="Search Projects" title="Search current folder">
+                 </div>
+                 <div id="explorer-main">
+                     <div id="explorer-nav">
+                         <p title="Quick access"><i class="fas fa-star fa-fw" style="color: var(--windows-blue);"></i> Quick access</p>
+                         <p title="Desktop folder"><i class="fas fa-desktop fa-fw" style="color: var(--windows-blue);"></i> Desktop</p>
+                         <p title="Downloads folder"><i class="fas fa-download fa-fw" style="color: var(--windows-blue);"></i> Downloads</p>
+                         <p title="Documents folder"><i class="fas fa-file-alt fa-fw" style="color: var(--windows-blue);"></i> Documents</p>
+                         <p title="Pictures folder"><i class="fas fa-camera fa-fw" style="color: var(--windows-blue);"></i> Pictures</p>
+                         <p style="font-weight: bold; margin-top: 15px;" title="This PC"><i class="fas fa-hdd fa-fw" style="color: var(--windows-blue);"></i> This PC</p>
+                         <ul style="margin-bottom: 15px;">
+                             <li><i class="fas fa-folder fa-fw" style="color: #ffda7e;"></i> Local Disk (C:)</li>
+                             <li><i class="fas fa-folder fa-fw" style="color: #ffda7e;"></i> Data (D:)</li>
+                         </ul>
+                          <p style="font-weight: bold; margin-top: 10px;" class="active-folder" title="Portfolio folder"><i class="fas fa-folder fa-fw" style="color: #ffda7e;"></i> Portfolio</p>
+                         <ul>
+                             <li title="About Me folder"><i class="fas fa-folder fa-fw" style="color: #ffda7e;"></i> About</li>
+                             <li title="Projects folder"><i class="fas fa-folder fa-fw" style="color: #ffda7e;"></i> Projects</li>
+                             <li title="Skills folder"><i class="fas fa-folder fa-fw" style="color: #ffda7e;"></i> Skills</li>
+                             <li title="Contact folder"><i class="fas fa-folder fa-fw" style="color: #ffda7e;"></i> Contact</li>
+                         </ul>
+                     </div>
+                     <div id="explorer-files">
+                         <div class="file-item" title="E-commerce Platform Project Folder"> <i class="fas fa-folder fa-fw"></i> E-commerce Platform </div>
+                         <div class="file-item" title="Task Management App Project Folder"> <i class="fas fa-folder fa-fw"></i> Task Management App </div>
+                         <div class="file-item" title="Data Dashboard Project Folder"> <i class="fas fa-folder fa-fw"></i> Data Dashboard </div>
+                         <div class="file-item" title="Portfolio Simulation Project Folder"> <i class="fas fa-folder fa-fw"></i> Portfolio Simulation </div>
+                         <div class="file-item" title="Project Readme File"> <i class="fas fa-file-alt fa-fw" style="color: var(--text-secondary);"></i> README.md </div>
+                         <div class="file-item" title="Main Project Script File"> <i class="fas fa-file-code fa-fw"></i> main_script.js</div>
+                         <p style="margin-top: 20px; color: var(--text-secondary); font-style: italic;">6 items</p>
+                     </div>
+                 </div>
+            </div>
+        </div>
+
+         <!-- Settings Window (Simulated) -->
+        <div id="settings-window" class="window" style="top: 180px; left: 350px; width: 700px; height: 540px;">
+            <div class="title-bar">
+                 <span class="title-bar-text"><i class="fas fa-cog" style="color: #bbbbbb;"></i> Settings (Simulated)</span>
+                <div class="title-bar-controls">
+                     <button class="title-bar-button minimize-button" title="Minimize"><i class="fa-solid fa-minus"></i></button>
+                    <button class="title-bar-button maximize-button" title="Maximize"><i class="fa-regular fa-square"></i></button>
+                    <button class="title-bar-button close-button" title="Close"><i class="fas fa-times"></i></button>
+                </div>
+            </div>
+            <div class="window-content" id="settings-content">
+                <h2>Settings</h2>
+                <p style="color: var(--text-secondary); margin-bottom: 25px;">Select a category to view simulated settings options.</p>
+                 <ul class="settings-category-list">
+                     <li onclick="alert('System settings clicked (Simulated)')"><i class="fas fa-desktop fa-fw"></i> System</li>
+                     <li onclick="alert('Bluetooth & devices clicked (Simulated)')"><i class="fab fa-bluetooth-b fa-fw"></i> Bluetooth & devices</li>
+                     <li onclick="alert('Network & internet clicked (Simulated)')"><i class="fas fa-wifi fa-fw"></i> Network & internet</li>
+                     <li onclick="triggerPersonalization()"><i class="fas fa-palette fa-fw"></i> Personalization</li>
+                     <li onclick="alert('Apps settings clicked (Simulated)')"><i class="fas fa-th-large fa-fw"></i> Apps</li>
+                     <li onclick="alert('Accounts settings clicked (Simulated)')"><i class="fas fa-user-circle fa-fw"></i> Accounts</li>
+                     <li onclick="alert('Time & language clicked (Simulated)')"><i class="fas fa-clock fa-fw"></i> Time & language</li>
+                     <li onclick="alert('Gaming settings clicked (Simulated)')"><i class="fas fa-gamepad fa-fw"></i> Gaming</li>
+                     <li onclick="alert('Accessibility settings clicked (Simulated)')"><i class="fas fa-universal-access fa-fw"></i> Accessibility</li>
+                     <li onclick="alert('Privacy & security clicked (Simulated)')"><i class="fas fa-shield-alt fa-fw"></i> Privacy & security</li>
+                     <li onclick="alert('Windows Update clicked (Simulated)')"><i class="fas fa-sync-alt fa-fw"></i> Windows Update</li>
+                 </ul>
+            </div>
+        </div>
+
+    </div> <!-- End #desktop -->
+
+    <!-- Start Menu Panel -->
+     <div id="start-menu" class="panel">
+         <div id="start-menu-search-container">
+            <input id="start-search-bar" type="text" placeholder="Type here to search">
+         </div>
+        <div id="start-menu-content">
+            <div class="start-menu-section">
+                <h3>Pinned</h3>
+                <div class="start-menu-grid">
+                    <div class="start-menu-item" data-window-id="about-window" title="About Rukkamolla Shashidhar Reddy">
+                        <i class="fas fa-user-circle" style="color: #ff8c00;"></i><span>About Me</span>
+                    </div>
+                    <div class="start-menu-item" data-window-id="projects-window" title="My Projects">
+                        <i class="fas fa-folder-open" style="color: #ffcc00;"></i><span>Projects</span>
+                    </div>
+                     <div class="start-menu-item" data-window-id="skills-window" title="Skills & Toolkit">
+                        <i class="fas fa-drafting-compass" style="color: #cccccc;"></i><span>Skills</span>
+                    </div>
+                     <div class="start-menu-item" data-window-id="contact-window" title="Contact Me">
+                        <i class="fas fa-envelope" style="color: #66ccff;"></i><span>Contact</span>
+                    </div>
+                    <div class="start-menu-item" data-window-id="explorer-window" title="File Explorer (Simulated)">
+                        <i class="fas fa-folder" style="color: #ffda7e;"></i><span>File Explorer</span>
+                    </div>
+                     <div class="start-menu-item" data-window-id="settings-window" title="Settings (Simulated)">
+                        <i class="fas fa-cog" style="color: #bbbbbb;"></i><span>Settings</span>
+                    </div>
+                    <div class="start-menu-item" onclick="window.open('https://github.com/Shashidhar99github', '_blank')" title="Open GitHub Profile">
+                        <i class="fab fa-github" style="color: #8e44ad;"></i><span>GitHub</span>
+                    </div>
+                     <div class="start-menu-item" onclick="window.open('https://www.linkedin.com/in/rukkamolla-shashidhar-reddy/', '_blank')" title="Open LinkedIn Profile">
+                        <i class="fab fa-linkedin" style="color: #3498db;"></i><span>LinkedIn</span>
+                    </div>
+                    <!-- Add more pinned items if desired -->
+                </div>
+            </div>
+             <div class="start-menu-section">
+                <h3>Recommended</h3>
+                 <div class="start-menu-grid">
+                     <div class="start-menu-item" data-window-id="projects-window" title="View Project: E-commerce Platform">
+                        <i class="fas fa-star" style="color: gold;"></i><span>E-commerce Project</span>
+                    </div>
+                    <div class="start-menu-item" onclick="window.open('/path/to/your/resume.pdf', '_blank'); alert('Opening Resume PDF...')">
+                         <i class="fas fa-file-pdf" style="color: #e74c3c;"></i><span>My Resume</span>
+                    </div>
+                    <div class="start-menu-item" onclick="triggerPersonalization()">
+                         <i class="fas fa-image" style="color: #2ecc71;"></i><span>Change BG</span>
+                    </div>
+                     <div class="start-menu-item" data-window-id="skills-window" title="View Skills">
+                        <i class="fas fa-check-circle" style="color: #1abc9c;"></i><span>View Skills</span>
+                    </div>
+                 </div>
+            </div>
+        </div>
+        <!-- User/Power section at bottom -->
+         <div id="start-menu-footer">
+             <div style="display: flex; align-items: center; gap: 8px; cursor: pointer;" title="User Account (Simulated)">
+                <img src="https://via.placeholder.com/32/0078d4/ffffff?text=SR" alt="User"> <!-- Placeholder -->
+                 <span>Shashidhar Reddy</span>
+            </div>
+             <i class="fas fa-power-off power-button" title="Shut Down (Dummy)" onclick="alert('Shutting down... Just kidding! System remains operational.')"></i>
+         </div>
+    </div>
+
+    <!-- Search Panel -->
+    <div id="search-panel" class="panel">
+        <input id="search-input" type="text" placeholder="Search portfolio, web, or Windows (Simulated)">
+        <div id="search-results">
+            <p>Start typing to see simulated results for 'React', 'Projects', etc.</p>
+            <!-- Dummy search results could be added here dynamically -->
+        </div>
+    </div>
+
+    <!-- Widgets Panel -->
+    <div id="widgets-panel" class="panel">
+        <h3>Widgets (Simulated)</h3>
+        <div class="widget-card">
+             <h4><i class="fas fa-cloud-sun" style="color: #f1c40f;"></i> Weather</h4>
+             <p>Hyderabad, IN: 32°C, Mostly Sunny. Feels like 35°C.</p>
+        </div>
+         <div class="widget-card">
+             <h4><i class="fas fa-newspaper" style="color: #3498db;"></i> Tech News</h4>
+             <p>New JavaScript Framework gaining traction.</p>
+             <p>WebAssembly adoption continues to grow.</p>
+        </div>
+         <div class="widget-card">
+             <h4><i class="fas fa-calendar-alt" style="color: #e74c3c;"></i> Calendar</h4>
+             <p>No upcoming events today.</p>
+        </div>
+         <div class="widget-card">
+             <h4><i class="fas fa-check-circle" style="color: #2ecc71;"></i> Quick Notes</h4>
+             <p>- Refactor portfolio CSS for dark mode toggle.</p>
+             <p>- Add more project details.</p>
+        </div>
+    </div>
+
+     <!-- Action Center / Quick Settings Panel -->
+     <div id="action-center" class="panel">
+         <h4>Quick Settings</h4>
+         <div class="quick-settings-grid">
+             <div class="quick-setting-tile active" data-setting="wifi" title="Wi-Fi On"> <i class="fas fa-wifi"></i><span>Wi-Fi</span> </div>
+              <div class="quick-setting-tile active" data-setting="bluetooth" title="Bluetooth On"> <i class="fab fa-bluetooth-b"></i><span>Bluetooth</span> </div>
+              <div class="quick-setting-tile" data-setting="airplane" title="Airplane Mode Off"> <i class="fas fa-plane"></i><span>Airplane Mode</span> </div>
+              <div class="quick-setting-tile" data-setting="nightlight" title="Night Light Off"> <i class="fas fa-moon"></i><span>Night Light</span> </div>
+              <div class="quick-setting-tile active" data-setting="location" title="Location On"> <i class="fas fa-map-marker-alt"></i><span>Location</span> </div>
+              <div class="quick-setting-tile" data-setting="focus" title="Focus Assist Off"> <i class="fas fa-dot-circle"></i><span>Focus Assist</span> </div>
+             <div class="quick-setting-tile" data-setting="accessibility" title="Accessibility Settings"> <i class="fas fa-universal-access"></i><span>Accessibility</span> </div>
+              <div class="quick-setting-tile" data-setting="network" title="Network Settings"> <i class="fas fa-network-wired"></i><span>Network</span> </div>
+              <div class="quick-setting-tile" data-window-id="settings-window" title="All Settings"> <i class="fas fa-cog"></i><span>All Settings</span> </div>
+         </div>
+         <div class="slider-control">
+            <i class="fas fa-sun" title="Brightness"></i>
+             <input type="range" min="0" max="100" value="80" title="Brightness Control (Simulated)">
+         </div>
+          <div class="slider-control">
+            <i class="fas fa-volume-high" title="Volume"></i>
+             <input type="range" min="0" max="100" value="60" title="Volume Control (Simulated)">
+         </div>
+     </div>
+
+    <!-- Taskbar -->
+    <div id="taskbar">
+        <div id="taskbar-icons">
+            <!-- System Icons -->
+            <div id="start-button" class="taskbar-icon" title="Start"> <i class="fab fa-windows"></i> </div>
+             <div id="search-button" class="taskbar-icon" title="Search"> <i class="fas fa-search"></i> </div>
+             <div id="widgets-button" class="taskbar-icon" title="Widgets"> <i class="fa-solid fa-table-cells-large"></i> </div>
+
+             <!-- App Icons (update dynamically if needed, but static is simpler for single file) -->
+            <div class="taskbar-icon" data-window-id="explorer-window" title="File Explorer"><i class="fas fa-folder fa-fw"></i></div>
+            <div class="taskbar-icon" data-window-id="about-window" title="About Me"><i class="fas fa-user-circle fa-fw"></i></div>
+            <div class="taskbar-icon" data-window-id="projects-window" title="Projects"><i class="fas fa-folder-open fa-fw"></i></div>
+            <div class="taskbar-icon" data-window-id="settings-window" title="Settings"><i class="fas fa-cog fa-fw"></i></div>
+            <div class="taskbar-icon" title="My GitHub" onclick="window.open('https://github.com/Shashidhar99github', '_blank')"><i class="fab fa-github fa-fw"></i></div>
+            <!-- Add more taskbar icons if desired -->
+        </div>
+        <div id="system-tray" title="Show Quick Settings">
+             <div id="system-tray-icons">
+                 <span><i class="fa-solid fa-chevron-up" title="Show hidden icons (Simulated)"></i></span>
+                 <span><i class="fa-solid fa-wifi" title="Wi-Fi Connected"></i></span>
+                 <span><i class="fa-solid fa-volume-high" title="Volume: 60%"></i></span>
+                 <span><i class="fa-solid fa-battery-three-quarters" title="Battery: 75% (Simulated)"></i></span>
+            </div>
+            <div id="clock">12:00 PM</div>
+        </div>
+    </div>
+
+    <!-- Context Menu (Right-click Desktop) -->
+    <div id="context-menu" class="panel">
+        <div class="context-menu-item" onclick="alert('View options clicked (Simulated)')"><i class="fas fa-eye fa-fw"></i> View</div>
+        <div class="context-menu-item" onclick="alert('Sort by options clicked (Simulated)')"><i class="fas fa-sort-alpha-down fa-fw"></i> Sort by</div>
+        <div class="context-menu-item" onclick="window.location.reload()"><i class="fas fa-sync-alt fa-fw"></i> Refresh</div>
+        <div class="context-menu-separator"></div>
+         <div class="context-menu-item" onclick="alert('New item clicked (Simulated)')"><i class="fas fa-plus fa-fw"></i> New</div>
+        <div class="context-menu-separator"></div>
+        <div class="context-menu-item" data-window-id="settings-window"><i class="fas fa-desktop fa-fw"></i> Display Settings</div>
+        <div class="context-menu-item" onclick="triggerPersonalization()"><i class="fas fa-palette fa-fw"></i> Personalize</div>
+        <div class="context-menu-item" onclick="resetBackground()"><i class="fas fa-undo fa-fw"></i> Reset Background</div>
+        <div class="context-menu-separator"></div>
+        <div class="context-menu-item" onclick="alert('Terminal clicked! (Simulated)')"><i class="fas fa-terminal fa-fw"></i> Open in Terminal</div>
+        <div class="context-menu-item" onclick="alert('Show more options clicked (Simulated)')"><i class="fas fa-ellipsis-h fa-fw"></i> Show more options</div>
+    </div>
+
+
+    <script>
+        // --- Constants & State ---
+        const DESKTOP_BACKGROUND_KEY = 'desktopBackgroundUrl_PortfolioOS';
+        const WINDOW_STATE_KEY_PREFIX = 'windowState_PortfolioOS_';
+        const DEFAULT_BACKGROUND_URL = 'https://wallpapercave.com/wp/wp11916113.jpg'; // Default wallpaper
+
+        let highestZIndex = 50;
+        let activeWindow = null;
+        let draggedElement = null;
+        let dragOffsetX, dragOffsetY;
+        let isDragging = false;
+
+        // --- DOM Element References ---
+        const desktop = document.getElementById('desktop');
+        const taskbar = document.getElementById('taskbar');
+        const startButton = document.getElementById('start-button');
+        const startMenu = document.getElementById('start-menu');
+        const searchButton = document.getElementById('search-button');
+        const searchPanel = document.getElementById('search-panel');
+        const widgetsButton = document.getElementById('widgets-button');
+        const widgetsPanel = document.getElementById('widgets-panel');
+        const systemTray = document.getElementById('system-tray');
+        const actionCenter = document.getElementById('action-center');
+        const contextMenu = document.getElementById('context-menu');
+        const clockElement = document.getElementById('clock');
+        const allPanels = document.querySelectorAll('.panel'); // Includes start, search, widgets, action center, context menu
+        const windows = document.querySelectorAll('.window');
+        const desktopIcons = document.querySelectorAll('.desktop-icon');
+        const taskbarIcons = document.querySelectorAll('.taskbar-icon[data-window-id]');
+        const startMenuItems = document.querySelectorAll('.start-menu-item[data-window-id]');
+        const contextMenuItems = document.querySelectorAll('#context-menu .context-menu-item[data-window-id]');
+        const quickSettingTiles = document.querySelectorAll('.quick-setting-tile');
+
+        // --- Initialization ---
+        document.addEventListener('DOMContentLoaded', () => {
+            initClock();
+            initPanelToggles();
+            initWindowManagement();
+            initDesktopIcons();
+            initTaskbar();
+            initContextMenu();
+            initQuickSettings();
+            loadDesktopBackground();
+            console.log("Portfolio OS Initialized. Welcome, Shashidhar!");
+            // Optional: Open a default window
+            // openWindow('about-window');
+        });
+
+        // --- Clock ---
+        function initClock() {
+            updateClock(); // Initial call
+            setInterval(updateClock, 15000); // Update every 15 seconds is enough
+        }
+
+        function updateClock() {
+            const now = new Date();
+            const options = { hour: 'numeric', minute: '2-digit', hour12: true };
+            clockElement.textContent = now.toLocaleTimeString(undefined, options);
+        }
+
+        // --- Panel Management ---
+        function initPanelToggles() {
+            const panelToggles = [
+                { button: startButton, panel: startMenu },
+                { button: searchButton, panel: searchPanel },
+                { button: widgetsButton, panel: widgetsPanel },
+                { button: systemTray, panel: actionCenter }
+            ];
+
+            panelToggles.forEach(({ button, panel }) => {
+                button.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    togglePanel(panel, button);
+                    // Focus search input when search panel opens
+                    if (panel === searchPanel && panel.classList.contains('active')) {
+                        document.getElementById('search-input').focus();
+                    }
+                });
+            });
+
+            // Close panels on outside click
+            document.addEventListener('click', handleClickOutside);
+        }
+
+        function closeAllPanels(exceptPanel = null) {
+            allPanels.forEach(panel => {
+                if (panel !== exceptPanel && panel.classList.contains('active')) {
+                    panel.classList.remove('active');
+                    // Reset associated button state if applicable
+                    const trigger = findPanelTrigger(panel);
+                    if (trigger) trigger.classList.remove('active');
+                }
+            });
+        }
+
+        function togglePanel(panelElement, triggerButton = null) {
+            const isActive = panelElement.classList.contains('active');
+            // Always close context menu if opening another panel
+            if(panelElement !== contextMenu) closeAllPanels(contextMenu);
+            // Close other panels only if opening this one (not if closing)
+            if(!isActive) closeAllPanels(panelElement);
+
+            panelElement.classList.toggle('active');
+            if (triggerButton) triggerButton.classList.toggle('active', !isActive);
+
+            // Adjust transforms based on panel type and state (handled by CSS now mostly)
+        }
+
+        function findPanelTrigger(panelElement) {
+            if (panelElement === startMenu) return startButton;
+            if (panelElement === searchPanel) return searchButton;
+            if (panelElement === widgetsPanel) return widgetsButton;
+            if (panelElement === actionCenter) return systemTray;
+            return null; // Context menu has no single trigger button
+        }
+
+        function handleClickOutside(event) {
+            // Check if click is outside all panels and their triggers
+             const clickedOutsidePanels = ![...allPanels].some(panel => panel.contains(event.target));
+             const clickedOutsideTriggers = ![startButton, searchButton, widgetsButton, systemTray].some(btn => btn.contains(event.target));
+
+            if (clickedOutsidePanels && clickedOutsideTriggers) {
+                closeAllPanels();
+            }
+
+            // Deselect desktop icons if clicking directly on desktop or taskbar
+            if ((event.target === desktop || event.target === taskbar) && !event.target.closest('.desktop-icon')) {
+                 deselectAllDesktopIcons();
+            }
+        }
+
+         // Close Start Menu/Action Center when a non-window opening item inside is clicked
+         [startMenu, actionCenter, contextMenu].forEach(panel => {
+             panel.addEventListener('click', (event) => {
+                 const itemClicked = event.target.closest('.start-menu-item, .quick-setting-tile, .context-menu-item');
+                 // Close only if the clicked item doesn't have a data-window-id AND is not a setting toggle
+                 if (itemClicked && !itemClicked.hasAttribute('data-window-id')) {
+                     if (!(itemClicked.classList.contains('quick-setting-tile') && itemClicked.hasAttribute('data-setting'))) {
+                         closeAllPanels();
+                     }
+                 }
+             });
+         });
+
+        // --- Window Management ---
+        function initWindowManagement() {
+            windows.forEach(win => {
+                initWindowDragging(win);
+                initWindowControls(win);
+                initWindowFocus(win);
+            });
+
+            // Open window links from various places
+            [...startMenuItems, ...contextMenuItems, ...quickSettingTiles].forEach(item => {
+                if (item.hasAttribute('data-window-id')) {
+                    item.addEventListener('click', () => {
+                        const windowId = item.getAttribute('data-window-id');
+                        if (windowId) {
+                            openWindow(windowId);
+                            // Panels are closed by openWindow function
+                        }
+                    });
+                }
+            });
+        }
+
+        function getWindowState(windowId) {
+            try {
+                const state = localStorage.getItem(WINDOW_STATE_KEY_PREFIX + windowId);
+                return state ? JSON.parse(state) : null;
+            } catch (e) {
+                console.error("Error reading window state from localStorage:", e);
+                return null;
+            }
+        }
+
+        function saveWindowState(windowElement) {
+             if (!windowElement || windowElement.classList.contains('maximized')) return; // Don't save state if maximized
+            const state = {
+                top: windowElement.style.top || (windowElement.offsetTop + 'px'),
+                left: windowElement.style.left || (windowElement.offsetLeft + 'px'),
+                width: windowElement.style.width || (windowElement.offsetWidth + 'px'),
+                height: windowElement.style.height || (windowElement.offsetHeight + 'px'),
+            };
+            try {
+                localStorage.setItem(WINDOW_STATE_KEY_PREFIX + windowElement.id, JSON.stringify(state));
+            } catch (e) {
+                console.error("Error saving window state to localStorage:", e);
+            }
+        }
+
+
+        function openWindow(windowId) {
+            const windowElement = document.getElementById(windowId);
+            if (windowElement) {
+                 // Restore position/size if available
+                const savedState = getWindowState(windowId);
+                 if (savedState && !windowElement.classList.contains('maximized')) { // Don't apply if reopening maximized
+                     windowElement.style.top = savedState.top;
+                     windowElement.style.left = savedState.left;
+                     windowElement.style.width = savedState.width;
+                     windowElement.style.height = savedState.height;
+                 }
+
+                // Apply opening animation class
+                 windowElement.style.opacity = '0';
+                 windowElement.style.transform = 'scale(0.95)';
+                 windowElement.style.display = 'flex';
+
+                // Force reflow before adding animation end state
+                 void windowElement.offsetWidth;
+
+                requestAnimationFrame(() => {
+                    windowElement.style.opacity = '1';
+                    windowElement.style.transform = 'scale(1)';
+                });
+
+
+                bringToFront(windowElement);
+                closeAllPanels();
+
+                updateTaskbarIcon(windowId, true, true); // Mark as open and active
+            } else {
+                console.warn(`Window with ID ${windowId} not found.`);
+            }
+        }
+
+        function closeWindow(windowElement) {
+             if(windowElement) {
+                const windowId = windowElement.id;
+                 saveWindowState(windowElement); // Save state before closing
+
+                windowElement.style.display = 'none';
+                windowElement.classList.remove('active', 'maximized'); // Reset states
+
+                updateTaskbarIcon(windowId, false, false); // Mark as closed
+
+                if (activeWindow === windowElement) {
+                    activeWindow = null;
+                    // Optional: Activate the next highest z-index window
+                    focusTopWindow();
+                }
+             }
+        }
+
+        function minimizeWindow(windowElement) {
+             if(windowElement) {
+                saveWindowState(windowElement); // Save state before minimizing
+                 windowElement.style.display = 'none'; // Hide
+                 windowElement.classList.remove('active');
+                 updateTaskbarIcon(windowElement.id, true, false); // Keep open, but not active
+
+                 if (activeWindow === windowElement) {
+                     activeWindow = null;
+                     focusTopWindow(); // Focus next window
+                 }
+             }
+        }
+
+        function toggleMaximize(windowElement) {
+             if (windowElement) {
+                 const maximizeButtonIcon = windowElement.querySelector('.maximize-button i');
+                 const titleBar = windowElement.querySelector('.title-bar');
+                 const isMaximized = windowElement.classList.contains('maximized');
+
+                 if (isMaximized) {
+                     // Restore
+                     windowElement.classList.remove('maximized');
+                     // Re-apply saved/default styles might be needed if not handled by class removal perfectly
+                     const savedState = getWindowState(windowElement.id) || { top: '100px', left: '150px', width: '600px', height: '400px' }; // Defaults
+                     windowElement.style.top = savedState.top;
+                     windowElement.style.left = savedState.left;
+                     windowElement.style.width = savedState.width;
+                     windowElement.style.height = savedState.height;
+
+                     maximizeButtonIcon?.classList.replace('fa-window-restore', 'fa-square');
+                     if(maximizeButtonIcon) maximizeButtonIcon.parentElement.title = "Maximize";
+                     titleBar.style.cursor = 'grab';
+                 } else {
+                     // Save state *before* maximizing
+                     saveWindowState(windowElement);
+                     // Maximize
+                     windowElement.classList.add('maximized');
+                      maximizeButtonIcon?.classList.replace('fa-square','fa-window-restore');
+                     if(maximizeButtonIcon) maximizeButtonIcon.parentElement.title = "Restore Down";
+                     titleBar.style.cursor = 'default';
+                 }
+                 bringToFront(windowElement); // Ensure it's on top
+             }
+        }
+
+        function bringToFront(windowElement) {
+            if (activeWindow === windowElement && windowElement.style.zIndex == highestZIndex) return; // Already active and top
+
+            highestZIndex++;
+            windowElement.style.zIndex = highestZIndex;
+
+            // Deactivate previously active window
+            if (activeWindow && activeWindow !== windowElement) {
+                activeWindow.classList.remove('active');
+                updateTaskbarIcon(activeWindow.id, true, false); // Keep open, but not active
+            }
+
+             // Activate new window
+             windowElement.classList.add('active');
+             activeWindow = windowElement;
+             updateTaskbarIcon(windowElement.id, true, true); // Open and active
+
+            // Ensure only the top window has the active class visually
+            windows.forEach(win => {
+                 if (win !== activeWindow) win.classList.remove('active');
+            });
+        }
+
+        function focusTopWindow() {
+            let topWin = null;
+            let maxZ = 0;
+            windows.forEach(win => {
+                 if (win.style.display === 'flex') { // Only consider visible windows
+                    const z = parseInt(win.style.zIndex || '0');
+                     if (z > maxZ) {
+                        maxZ = z;
+                        topWin = win;
+                    }
+                 }
+            });
+             if (topWin && topWin !== activeWindow) {
+                 bringToFront(topWin);
+             } else if (!topWin) {
+                 activeWindow = null; // No visible windows left
+             }
+        }
+
+        function initWindowDragging(windowElement) {
+            const titleBar = windowElement.querySelector('.title-bar');
+            if (!titleBar) return;
+
+            titleBar.addEventListener('mousedown', (e) => {
+                 if (e.target.closest('.title-bar-button') || windowElement.classList.contains('maximized') || e.button !== 0) { // Only drag on left click, not buttons/maximized
+                    return;
+                 }
+                 isDragging = true;
+                 draggedElement = windowElement;
+                 draggedElement.classList.add('dragging');
+                 dragOffsetX = e.clientX - draggedElement.offsetLeft;
+                 dragOffsetY = e.clientY - draggedElement.offsetTop;
+                 bringToFront(draggedElement);
+             });
+
+             // Double click title bar to maximize/restore
+             titleBar.addEventListener('dblclick', (e) => {
+                  if (!e.target.closest('.title-bar-button')) {
+                      toggleMaximize(windowElement);
+                  }
+             });
+        }
+
+        function initWindowControls(windowElement) {
+            const closeButton = windowElement.querySelector('.close-button');
+            const minimizeButton = windowElement.querySelector('.minimize-button');
+            const maximizeButton = windowElement.querySelector('.maximize-button');
+
+            closeButton?.addEventListener('click', (e) => { e.stopPropagation(); closeWindow(windowElement); });
+            minimizeButton?.addEventListener('click', (e) => { e.stopPropagation(); minimizeWindow(windowElement); });
+            maximizeButton?.addEventListener('click', (e) => { e.stopPropagation(); toggleMaximize(windowElement); });
+        }
+
+         function initWindowFocus(windowElement) {
+             // Bring to front on click anywhere on the window (not just title bar)
+             windowElement.addEventListener('mousedown', (e) => {
+                 if (windowElement !== activeWindow && e.button === 0) { // Only focus on left click if not active
+                      bringToFront(windowElement);
+                 }
+              }, true); // Use capture phase
+         }
+
+        // Global Drag Handlers (using capture phase for better control)
+        document.addEventListener('mousemove', (e) => {
+            if (!isDragging || !draggedElement) return;
+
+            let newX = e.clientX - dragOffsetX;
+            let newY = e.clientY - dragOffsetY;
+
+            // Boundary checks (more refined)
+             const titleBarHeight = draggedElement.querySelector('.title-bar')?.offsetHeight || 35;
+             const taskbarHeight = taskbar.offsetHeight;
+             newY = Math.max(0, Math.min(newY, window.innerHeight - taskbarHeight - titleBarHeight)); // Keep title bar visible
+             newX = Math.max(-(draggedElement.offsetWidth - 60), Math.min(newX, window.innerWidth - 60)); // Allow partial off-screen
+
+            draggedElement.style.left = `${newX}px`;
+            draggedElement.style.top = `${newY}px`;
+        }, true);
+
+        document.addEventListener('mouseup', (e) => {
+            if (isDragging && draggedElement && e.button === 0) {
+                 draggedElement.classList.remove('dragging');
+                 saveWindowState(draggedElement); // Save state on drop
+            }
+            isDragging = false;
+            draggedElement = null;
+        }, true);
+
+
+        // --- Desktop Icon Management ---
+        function initDesktopIcons() {
+            desktopIcons.forEach(icon => {
+                icon.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    deselectAllDesktopIcons();
+                    icon.classList.add('selected');
+                });
+
+                icon.addEventListener('dblclick', () => {
+                    const windowId = icon.getAttribute('data-window-id');
+                    if (windowId) {
+                        openWindow(windowId);
+                    } else if (icon.onclick) {
+                        // Handle icons with direct onclick handlers (like external links)
+                        // icon.onclick(); // Already handled by browser event
+                    }
+                     deselectAllDesktopIcons(); // Deselect after action
+                });
+
+                 // Allow keyboard activation (Enter key)
+                icon.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter') {
+                         icon.dispatchEvent(new MouseEvent('dblclick')); // Simulate dblclick
+                    }
+                });
+            });
+        }
+
+        function deselectAllDesktopIcons() {
+            desktopIcons.forEach(icon => icon.classList.remove('selected'));
+        }
+
+        // --- Taskbar Management ---
+        function initTaskbar() {
+            taskbarIcons.forEach(icon => {
+                icon.addEventListener('click', () => {
+                    const windowId = icon.getAttribute('data-window-id');
+                    if (windowId) {
+                        const windowElement = document.getElementById(windowId);
+                        if (windowElement) {
+                            if (windowElement.style.display === 'flex') { // If open
+                                if (windowElement.classList.contains('active')) {
+                                    minimizeWindow(windowElement);
+                                } else {
+                                    bringToFront(windowElement);
+                                }
+                            } else { // If closed or minimized
+                                openWindow(windowId);
+                            }
+                        }
+                    } else if (icon.onclick) {
+                         // Allow taskbar icons with direct onclick handlers
+                         // icon.onclick(); // Already handled by browser event
+                     }
+                });
+            });
+        }
+
+        function updateTaskbarIcon(windowId, isOpen, isActive) {
+             const tbIcon = document.querySelector(`.taskbar-icon[data-window-id="${windowId}"]`);
+             if (tbIcon) {
+                 tbIcon.classList.toggle('open', isOpen);
+                 tbIcon.classList.toggle('active', isActive && isOpen); // Only active if also open
+             }
+        }
+
+        // --- Context Menu Management ---
+        function initContextMenu() {
+            desktop.addEventListener('contextmenu', (e) => {
+                e.preventDefault();
+                closeAllPanels(contextMenu); // Close others, except context menu itself if already open
+                deselectAllDesktopIcons();
+
+                const menuWidth = contextMenu.offsetWidth;
+                const menuHeight = contextMenu.offsetHeight;
+                const desktopWidth = desktop.clientWidth;
+                const desktopHeight = desktop.clientHeight;
+                const taskbarHeight = taskbar.offsetHeight;
+
+                let x = e.clientX;
+                let y = e.clientY;
+
+                // Adjust position to stay within viewport (above taskbar)
+                x = Math.min(x, desktopWidth - menuWidth - 10);
+                y = Math.min(y, desktopHeight - taskbarHeight - menuHeight - 10);
+                x = Math.max(x, 10);
+                y = Math.max(y, 10);
+
+                contextMenu.style.top = `${y}px`;
+                contextMenu.style.left = `${x}px`;
+
+                togglePanel(contextMenu); // Show context menu
+            });
+        }
+
+        // --- Quick Settings Management ---
+        function initQuickSettings() {
+            quickSettingTiles.forEach(tile => {
+                if (tile.hasAttribute('data-setting')) { // Only add toggle listener to setting tiles
+                    tile.addEventListener('click', (e) => {
+                        e.stopPropagation(); // Prevent panel closing immediately
+                        tile.classList.toggle('active');
+                        const settingName = tile.getAttribute('data-setting');
+                        const isActive = tile.classList.contains('active');
+                        tile.title = `${settingName.charAt(0).toUpperCase() + settingName.slice(1)} ${isActive ? 'On' : 'Off'}`;
+                        console.log(`Simulated toggle ${settingName}: ${isActive}`);
+                        // Add actual functionality here if desired (e.g., toggle dark mode)
+                    });
+                }
+                 // Window opening is handled by the generic window management listener
+            });
+        }
+
+        // --- Background Customization ---
+        function loadDesktopBackground() {
+            try {
+                const savedUrl = localStorage.getItem(DESKTOP_BACKGROUND_KEY);
+                const imageUrl = savedUrl || DEFAULT_BACKGROUND_URL;
+                setBackgroundImage(imageUrl);
+            } catch (e) {
+                console.error("Error reading background URL from localStorage:", e);
+                setBackgroundImage(DEFAULT_BACKGROUND_URL);
+            }
+        }
+
+        function setBackgroundImage(imageUrl) {
+            // Basic validation
+            if (!imageUrl || typeof imageUrl !== 'string' || (!imageUrl.startsWith('http') && !imageUrl.startsWith('data:image'))) {
+                 console.warn("Invalid image URL provided:", imageUrl);
+                 alert("Invalid image URL. Please provide a valid URL starting with http, https, or data:image.");
+                 setBackgroundImage(localStorage.getItem(DESKTOP_BACKGROUND_KEY) || DEFAULT_BACKGROUND_URL); // Revert
+                 return false;
+             }
+
+            // Preload image to check if valid before setting and saving
+            const img = new Image();
+            img.onload = () => {
+                 desktop.style.backgroundImage = `url('${imageUrl}')`;
+                 try {
+                     localStorage.setItem(DESKTOP_BACKGROUND_KEY, imageUrl);
+                     console.log("Desktop background updated and saved.");
+                 } catch (e) {
+                     console.error("Error saving background URL to localStorage:", e);
+                     alert("Could not save background preference. LocalStorage might be full or disabled.");
+                 }
+            };
+            img.onerror = () => {
+                console.error("Error loading image URL:", imageUrl);
+                 alert("Could not load the image from the provided URL. Please check the URL and try again.");
+                 // Optional: Revert to previous background if needed
+                 // setBackgroundImage(localStorage.getItem(DESKTOP_BACKGROUND_KEY) || DEFAULT_BACKGROUND_URL);
+            };
+            img.src = imageUrl;
+            return true; // Indicate success (potentially async due to image load)
+        }
+
+        function triggerPersonalization() {
+            closeAllPanels(); // Close any open panels first
+            const newImageUrl = prompt("Enter new background image URL (e.g., https://... .jpg):", localStorage.getItem(DESKTOP_BACKGROUND_KEY) || DEFAULT_BACKGROUND_URL);
+            if (newImageUrl !== null) { // Check if prompt wasn't cancelled
+                 setBackgroundImage(newImageUrl.trim());
+            }
+        }
+
+        function resetBackground() {
+            if (confirm("Reset background to default?")) {
+                 setBackgroundImage(DEFAULT_BACKGROUND_URL);
+                 try {
+                     localStorage.removeItem(DESKTOP_BACKGROUND_KEY); // Remove saved preference
+                 } catch (e) {
+                      console.error("Error removing background URL from localStorage:", e);
+                 }
+                 closeAllPanels(); // Close context menu
+            }
+        }
+
+
+    </script>
+
+</body>
+</html>
